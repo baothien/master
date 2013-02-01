@@ -1,0 +1,74 @@
+\section{Evaluation and Future Works}
+\label{sec:evaluation}
+Taking into account that both local and global features may
+provide useful information to recognize object, the combination of
+multiple features to construct a system gets a good performance. We
+evaluate our proposed algorithm in a large image database and the outcome is satisfactory.
+Compared with PASCAL2010 result, the consequence of our
+method is better. However, there are some restrictions. If the input
+image is blurring or object is occuluded, it cannot be detected. If
+there are edges and corners arranged similar to the object, our shema
+knows that it is the object to detect.
+
+\begin{table}[htbp]
+\small
+\begin{tabular}{|c||c|c||c|c|}%p{3.5cm}p{8cm}p{5cm}} 
+    \hline
+     Object &  AP (manual) & AR(manual) & AP (auto)  & AR(auto)  \\ \hline
+     F/r car & 97.40\% & 89.71\% & 95.13\%& 90.14\%\\ \hline
+     Side car & 95.83\% & 92.38\% & 94.21\% & 91.73\%\\ \hline
+	 Bike & 83.82\% & 78.46\% & 84.02\% & 79.14\% \\ \hline
+	Train & 84.05\% & 74.10\% & 83.65\% & 75.31\% \\ \hline
+	Aero plane & 85.59\% & 87.56\% & 85.75\% & 84.51\% \\ \hline
+	Motorbike & 95.63\% & 85.35\% & 89.38\% & 85.47\% \\ \hline
+	Horse & 88.37\% & 70.72\% & 87.81\% & 75.40\% \\ \hline
+	Sheep & 86.13\% & 71.93\% & 86.25\% & 73.24\% \\ \hline
+	Tower &  &  & 84.33\% & 82.64\%  \\ \hline
+	Flower &  &  & 81.57\% & 74.42\%  \\ \hline
+\end{tabular}
+\captionof{table}{Comparision between auto and manual results}
+\label{table:compare_auto_manual}
+\end{table}
+Result shows that the detecting result of unchanged-size object (car, bike, ...) is
+better then one of unspecific size object (train, ...). In table~\ref{table:compare_auto_manual}, train detecting result is the lowest, because train object has no specific size. It can not make properly Edge map nor Corner map. But when combining with SURF, it gets better result. SURF feature works well with object having \emph{large surface} (plane, train).
+In contrast, for example with bike object, almost SURF features fall
+into background not belong to object. With such that object,
+SURF feature is not good. Color feature is only suitable for natural
+objects with small change in color such as sheep, horse, or animal.
+Table 3 visualizes the equivalence between these two methods by the
+detection accuracy of individual object. Features selected by the
+proposal algorithm prove to be significantly more appropriate for the
+experimental object detection tasks than features manually selected.
+Despite their apparent simplicity, these features collectively possess
+sufficient strength to bring about relatively high detection accuracy.
+Our results for the ten objects dataset describes that the proposal
+algorithm for automatic feature selection gets a high belief for
+detecting new object.
+Under the proposed framework, different with other state-of-art
+image retrieve systems, we also set up an algorithm for
+automatically choosing feature. This algorithm does not only
+determine which feature is good for which object, but it also
+unintentional compute the threshold value for each feature. Up to
+present, this is the first proposed algorithm that can do both of these
+tasks. But in this research, we only use \textit{and} operator $(f_i \wedge f_{i+1} \dots f_{i+k})$ for combining features. What will happen if both \textit{'and' $\wedge$ } and \textit{'or' $\vee$} such as $(((f_i \wedge f_{i+1}) \vee f_{i+2}) \wedge \dots \wedge (f_{i+k-1} \vee f_{i+k}))$ take part in detecting? With $n$ features and only two fundamental operators $(\wedge,\vee)$,
+there are about $2^{n-1}$ combinations. It is really a huge number, and we
+cannot check all the cases due to large running time. We should find
+a suitable way to combine with both two basic operators, but in a
+limited running time. This is truly a great challenge for automatically choosing feature. If we can solve this problem, the accuracy of our method will become more robust.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

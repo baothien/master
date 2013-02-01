@@ -224,9 +224,9 @@ regconize object. The final average precision (AP), average recall
 %\end{table}
 \begin{table}[htbp]
 \small
-\begin{tabular}{|c|c|c|c|c|c|}%p{3.5cm}p{8cm}p{5cm}} 
-    \hline
-     Object &  AP (0x0=0) & AR(0x0=0) & AP (0x0=0.5)  & AR(0x0=0.5)  \\ \hline
+\begin{tabular}{|c||c|c||c|c|}%p{3.5cm}p{8cm}p{5cm}} 
+    \hline 
+     Object &  AP (0x0=0) & AR(0x0=0) & AP (0x0=0.5)  & AR(0x0=0.5)  \\ \hline 
      F/r car & 97.40\% & 89.71\% & & \\ \hline
      Side car & 95.83\% & 92.38\% & & \\ \hline
 	 Bike & 83.76\% & 72.64\% & 83.82\% & 78.46\% \\ \hline
@@ -234,7 +234,7 @@ regconize object. The final average precision (AP), average recall
 	Aero plane & 85.59\% & 87.56\% & 81.15\% & 86.54\% \\ \hline
 	Motorbike & 95.63\% & 85.35\% & 95.35\% & 84.47\% \\ \hline
 	Horse & 88.64\% & 68.78\% & 88.37\% & 70.72\% \\ \hline
-	Sheep & 74.84\% & 65.96\% & 86.13\% & 71.93\% \\ \hline
+	Sheep & 74.84\% & 65.96\% & 86.13\% & 71.93\% \\ \hline 
 \end{tabular}
 \captionof{table}{Comparision between $0\times 0=0$ and $0\times 0=0.5$}
 \label{table:compare_0_5}
@@ -294,16 +294,25 @@ recognize that most of motorbike-images from CALTECH 256 have
 white background and their colors only vary in green, brown, red.
 That is the reason why with this database, color is helpful for
 detecting motorbike object.
-
-
-these principal components make object imaginable is in Fig.~\ref{fig:3components}.
-%\begin{figure}[ht]
-%  \centering
-%  \includegraphics[width=2.20in]{images/edge_cornre_HoG.jpg}
-%  \caption{Three main components make object be figured.}
-%  \label{fig:3components}
-%\end{figure}
-
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=3.35in,height=1.2in]{images/output.pdf}
+  \caption{Satisfied, positive and negative score of horse object(left) and side view car(right) .}
+  \label{fig:auto_selection}
+\end{figure}
+In the fig~\ref{fig:auto_selection}, detail of automatically choosing feature for
+horse object and side view car object is described. 
+%From set of features, we choose one feature with the highest satisfied score (calculated as in section 4). We combine every feature with the first chosen feature, and then we recalculate the satisfied score. We will pick the feature which makes the satisfied score maximum. This feature then is moved to chosen feature set. Next running time, both two chosen features are integrated with new one to compute new satisfied score. By doing this way, 
+%The satisfied score increases slowly until it rises to a superior value, which is the maximum value. After that, if more features are combined, the result will be worse. If the score is lower than previous continuously in three permutations, our algorithm would be terminated, and reverse to the peak of score. 
+At the beginning, with only one feature, generally the positive score $ pos(f_i,F_c) = |sat(F_c \cup \{f_i\}|T_{pos})| * 1/|T_{pos}|$  is very large because the most of images in $T_{pos}$ satisfy
+this feature. Other while, the negative score $neg(f_i,F_c) = (|T_{neg}| - |sat(F_c \cup \{f_i\}|T_{neg})| * 1/|T_{neg}|$ is small. When the more features are
+added to chosen feature set, the smaller positive score is, and the
+larger negative score becomes. Totally, the satisfied score $g(f_i,F_c) = \omega_p * pos(f_i,F_c) + \omega_n * neg(f_i,F_c)$ (with $\omega_p = 0.6$ and $\omega_n = 0.4$), increases
+slowly until it rises to a superior value, represented by the red line. After
+this peak, if more features are integrated into $F_C$, the satisfied score
+gets lower value.
+If the score is lower than the previous one continuously in $k$ permutations, our algorithm would be terminated, and reverse to the peak of score (in our
+evaluation, k = 3). Only features before the score gains the peak (on the left side of the red line) will be chosen as strong representative features for that object. For example, with horse object these are chosen-features: CL(color), C(corner), L(line), E(edge) and S(SURF). Other while, with side-view car, H(HoG) is the best feature following by E(edge), CR(circle), E(edge) and C (corner).
 
 
 
