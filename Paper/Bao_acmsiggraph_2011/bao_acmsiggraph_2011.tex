@@ -1,0 +1,110 @@
+%%% template.tex
+%%%
+%%% This LaTeX source document can be used as the basis for your technical
+%%% paper or abstract. Intentionally stripped of annotation, the parameters
+%%% and commands should be adjusted for your particular paper - title, 
+%%% author, article DOI, etc.
+%%% The accompanying ``template.annotated.tex'' provides copious annotation
+%%% for the commands and parameters found in the source document. (The code
+%%% is identical in ``template.tex'' and ``template.annotated.tex.'')
+
+\documentclass[annual]{acmsiggraph}
+
+\TOGonlineid{45678}
+\TOGvolume{0}
+\TOGnumber{0}
+\TOGarticleDOI{1111111.2222222}
+\TOGprojectURL{}
+\TOGvideoURL{}
+\TOGdataURL{}
+\TOGcodeURL{}
+
+\title{Auto Feature Selection for Object Detection, Can or Can't?}
+
+\author{Bao Nguyen Thien\thanks{e-mail:ntbaovn@gmail.com}\\ 
+        Yoshiaki Shirai\thanks{e-mail:shirai@ci.ritsumei.ac.jp} \\
+        Graduate School of Information Science and Engineering\\
+        Ritsumeikan University, Japan
+}
+%%\pdfauthor{Robert A. Smith}
+
+\keywords{feature seclection, object detection, image processing, computer vision
+%%radiosity, global illumination, constant time
+}
+
+\begin{document}
+
+%% \teaser{
+%%   \includegraphics[height=1.5in]{images/sampleteaser}
+%%   \caption{Spring Training 2009, Peoria, AZ.}
+%% }
+
+\maketitle
+
+\input{abstract}
+
+\begin{CRcatlist}
+   \CRcat{I.4.8}{Image processing and computer vision}{Scene Analysis}{Object recognition}
+   \CRcat{I.5.2}{Pattern Recognition}{Design Methodology}{Feature evaluation and selection};
+\end{CRcatlist}
+
+\keywordlist
+
+\TOGlinkslist
+
+\copyrightspace
+
+\input{introduction}
+
+\input{relatedworks}
+
+\input{objectdetection}
+
+\input{featureselection}
+
+\input{results}
+
+
+
+\section{Exposition}
+
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{equation}
+ \sum_{j=1}^{z} j = \frac{z(z+1)}{2}
+\end{equation}
+
+\begin{eqnarray}
+x & \ll & y_{1} + \cdots + y_{n} \\
+  & \leq & z
+\end{eqnarray}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Exposition}
+
+
+culpa qui officia deserunt mollit anim id est laborum.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1.5in]{images/samplefigure}
+  \caption{Sample illustration.}
+\end{figure}
+
+\section{Conclusion}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\section*{Acknowledgements}
+
+To Robert, for all the bagels.
+
+\bibliographystyle{acmsiggraph}
+\bibliography{ntbaovn-acmsiggrahp2011}
+\end{document}

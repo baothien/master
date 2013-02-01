@@ -1,0 +1,50 @@
+\section{Introduction}
+\label{sec:introduction}
+The amount of visual information available in digital collections
+increases every day. Pictures, medical images, graphs and photos
+among others are collected for books, papers, diagnosis, reports,
+news, albums, etc. Due to this, Content-Based Image Retrieval
+(CBIR) has recently become an active research discipline. Despite
+the advances in content-based image retrieval, different problems
+remain unsolved. The main problem is the semantic interpretation of
+the image content~\cite{smeulders2000content}. Most of CBIR systems try to work on
+semantic of image. But the semantic is not easy to get. There are
+many solutions for understanding the content of image. The easiest
+way is to describe image with text annotation. There are different
+situations in which images are surrounded by text descriptions that
+may provide contextual hints or semantic information about their
+contents. In this approach, image semantics are learned from an
+external source such as user feedbacks and textual annotations, and
+of course both are provided by human beings. 
+However, learning from external sources is limitted because we have no
+annotation is correct or not. Moreover, there are different scenarios
+in which descriptive annotations are not available for all images in
+the collection or the user is not able to provide an accurate textual
+query. Furthermore, several works have shown that, even in the
+presence of text descriptions, visual features are useful
+information source to identify relevant images in a large scale CBIR
+system, showing important improvements in performance~\cite{jing2007canoical,grubinger2008advances}.
+
+In this research, to understand the semantic of image, instead of
+annotation, we base on objects in the image. The more objects a
+system can detect, the more precise that system is. Object detection
+and recognition is still a difficult problem for computer vision. Most
+methods base on features of an image including both local and
+global one for detecting object. The goal of this research is to
+develop a necessary methodology for recognition of general object
+in still images by automatically choosing features. We base on
+features that are easily with natural recognizing by human. Most
+state-of-art methods focus on how to recognize object after fixing
+some features. In contrast, in this research, we let system choose
+features from a list of features, and the system determines by itself
+which features are good for detecting a given object.
+
+The rest of this paper is organized as follows. Section~\ref{sec:related_works} discusses
+previous work related to the approach taken here. Section 3
+describes the set of attributes we use, and how we create attribute
+classifiers. In section 4 we propose an algorithm for automatically
+choosing best features. In our experiments (section 5) we first
+evaluate the performance of both the individual attribute classifiers
+and combination attribute classifiers. We also compare the attribute features 
+with other methods. Result of automatically choosing features is also presented in this part.
+The last section discusses experiment results and suggests some future directions.

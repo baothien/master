@@ -1,0 +1,54 @@
+\section{Related Works}
+\label{sec:related_works}
+The most popular approach for object classification is to extract
+local regions from images, assign them to clusters, and use the count
+distribution across clusters as an input to a general classifier[4].
+Some other approaches try to locate the object within the image, and
+to take into account the spatial relationship of the image regions
+which trigger potential matches~\cite{ferrari2008learning}. These methods, however, tend to
+have high computational complexity. The 'bag of words' approach,
+instead, uses the histogram of counts across the whole image to
+predict whether or not the image contains the class of interest. While
+the image background may create confusion in recognizing object
+classes, the background can also provide useful cues to aid
+recognition [9]. Simple bag-of-words methods have shown
+impressive performances for object classification when used with
+large number of region descriptors and optimized parameters~\cite{marcin2007learning}.
+
+The local features used in bag-of-words methods typically lack
+any clear semantic meanings. The individual features do not usually
+have strong discriminative power, and the methods perform best
+when provided with very high-dimensional image descriptors.
+These descriptors allow the discovery of significant differences
+between different class feature distribution. Learning features
+with more specific meanings might help improve classification
+performance. Some previous work has looked at explicitly learning
+semantically meaningful features. For example, Van de Weijer et al.~\cite{van2009learning} learnt to map from image color to the color names people use to describe objects. 
+Ferrari and Zisserman~\cite{ferrari2007learning} also learn simple texture attributes such as 'stripes' or 'dots'.
+Recent work has embraced more complex attributes. Vogel and Schiele~\cite{vogel2004natural} used attributes
+describing scene, material, and shape to retrieve images of coasts,
+rivers/lakes, forests, plains, mountains, and sky/clouds.
+Farhadi et al.~\cite{farhadi2009describing} used a set of semantic attributes such as 'hairy' and 'fourlegged' to identify familiar objects, and to describes unfamiliar objects when an image and a bounding box annotation are provided.
+Lampert et al.~\cite{larmpert2009learning} showed that high-level descriptions in terms of
+semantic attributes can be used to recognize object classes without
+any example images, once semantic attribute classifiers are trained from other classes.
+
+We also use diverse semantic attributes with explicit meanings to
+describe the visual content of images. Notable differences include
+that most of these approaches based on both local and global features
+difficult to see with human eyes. In our method, we base on features
+that are easily seen and very close with human. Moreover, these
+attributes provide contextual information which is important for 
+object classification. Beside, we do not use any manual semantic
+attribute labels for images, instead collecting a separate set of
+representative images. Our system automatically decides which
+feature is good to recognize for a specific object. The classifiers
+learnt in this way are more general than all other approaches which
+fix features before detecting.
+
+
+
+
+
+
+

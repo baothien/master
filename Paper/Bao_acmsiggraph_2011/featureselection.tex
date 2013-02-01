@@ -1,0 +1,60 @@
+\section{Automatic Feature Selection}
+\label{sec:feature_selection}
+Instead of choosing features manually before detecting object, we propose an algorithm for automatic feature selection to determine which features be useful for a specific object. Automatically choosing
+feature is the most advatage of our system. In most of the other state-
+of-art recognizing object systems, the designer must define features
+which are used in their system. This is a limitation
+because the system has to work with one or some specific features,
+while other strong features for object cannot be used. Due to this,
+automatically choosing feature is a novel contribution to the pattern recognition literature. 
+
+Init:\mbox{~~~~~~~}$F_c = \o$, set of chosen features\\
+\mbox{~~~~~~~~}\mbox{~~~~~}$F = \{f_i\}$, set of all features
+
+Step 1:\mbox{~~}$\forall f_i \in F$\\
+\mbox{~~~~~~~~~~~~~}$g(f_i,F_c) = \omega_p * pos(f_i,F_c) + \omega_n * neg(f_i,F_c)$
+
+\mbox{~~~~~~~~~~~~} where: $ pos(f_i,F_c) = |sat(F_c \cup \{f_i\}|T_{pos})| * 1/|T_{pos}|$\\
+\mbox{~~~~~~~~~~~~~}$neg(f_i,F_c) = (|T_{neg}| - |sat(F_c \cup \{f_i\}|T_{neg})| * 1/|T_{neg}|$\\
+\mbox{~~~~~~~~~~~~~}$|A|$: cardinality of a set A\\
+\mbox{~~~~~~~~~~~~~}$\omega_p, \omega_n$: bias of positive and negative score
+
+Step 2:\mbox{~~}$F_c = F_c \cup {f_i}$, with $f_i = argmax_{f_i}\{g(f_i, F_c)\}$\\
+\mbox{~~~~~~~~~~~~~}$F = F \backslash \{f_i\}$
+
+Step 3:\mbox{~~}if $(F = \o \vee argmax\{g(f_i,F_c) > \delta\})$ then stop\\
+\mbox{~~~~~~~~~~~~~}else: goto step 1
+
+
+The larger the threshold $\delta$ is, the more precise system is, and the
+more time it also takes for training. Bias $\omega_{p}$ and $\omega_{n}$ are weight of positive
+and negative score in the total satisfied score for each feature. The
+basic idea of this algorithm is the best-fixed approach. From the set of
+feature, we calculate the score for each feature, and we then choose
+the one with the highest score. The chosen feature will be put in $F_c$ (set
+of chosen features). After that, we will estimate again the satisfy-
+score for all the features left. This time the satisfy-score is based on
+the combination of each feature left with all features in the set $F_c$. It means
+that all the best features of the previous running are fixed for this
+running time. It will be looped until there is no feature left or
+until we get a good result (the argmax is larger than threshold $\omega$).
+According to our experiment, it is impossible to run exhaustively the whole feature set $F$.
+We should stop when it reaches the peak of satisfied score.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
