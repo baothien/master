@@ -1,10 +1,8 @@
 \section{Object Dectection Based on Combination of Multiple Features}
 \label{sec:objectdetection}
-In the first stage, we try to detect object by combination many
-features including both global and local features. Up to present, we
-have tested with seven features, such as: edge, corner, HoG, line,
-circle, SURF, and color. This section describes how to extract and use
-these features for recognize object.
+In this part, we present a general approach for detecting object based on the combination of multiple
+features including both global and local ones. 
+%Up to present, we have tested with seven features, such as: edge, corner, HoG, line, circle, SURF, and color. This section describes how to extract and use these features for recognize object.
 \subsection{Edge, Corner and HoG Feature}
 It is easy to see that the most important features for recognition
 object are the overall shape of that object and all boundaries which
@@ -17,11 +15,10 @@ it makes viewer imagine different objects. The description of how
 these principal components make object imaginable is in Fig.~\ref{fig:3components}.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=2.20in]{images/edge_cornre_HoG.jpg}
+  \includegraphics[width=2.in]{images/edge_cornre_HoG.jpg}
   \caption{Three main components make object be figured.}
   \label{fig:3components}
 \end{figure}
-
 Based on this, we propose an overall approach for object detecting
 which focuses on edge, corner and edge orientation (HoG). More
 detail is presented in the next diagram in Fig~\ref{fig:framework}. But there is still an
@@ -32,7 +29,7 @@ object. Actually, there are many way to specify location of
 edge/corner, such as using prior knowledge, or machine learning, etc.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=3.15in]{images/framework1.jpg}
+  \includegraphics[width=2.85in]{images/framework1.jpg}
   \caption{Object detection based on multiple features.}
   \label{fig:framework}
 \end{figure}
@@ -86,11 +83,12 @@ David Monzo et al~\cite{monzo2008hog} compared HOG-EBGM vs. Gabor-EBGM
 and showed the result that HOG had a better performance.
 
 \textit{Making edge map and corner map }
-\textit{Edge map/corner map} is used to know if edge/corner is at right
+\textit{Edge map/corner map} is used to know if an edge/corner is at right
 position or not. To make edge map and corner map, we use the same
 method as Zhenfeng Zhu et al~\cite{zhu2004car}. For all images in the positive
-training-image set ($T_{pos}$) (the rest of training-image set is negative,
-$T_{neg}$), after detecting edge/corner we accumulate them in one temp
+training-image set ($T_{pos}$) 
+%(the rest of training-image set is negative,$T_{neg}$), 
+after detecting edge/corner we accumulate them in one temp
 image $T_{e}$ or $T_{c}$. Then edge map and corner map will be made from
 these temp images respectively. However,~\cite{zhu2004car} makes edge map and
 corner map be binary images. Our performance shows that with gray
@@ -101,7 +99,7 @@ at one specific point, other while it can be swung in a small region.
 Intuitively, gray scale map works better in this case.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=3.25in]{images/edgemap_cornermap.jpg}
+  \includegraphics[width=2.8in]{images/edgemap_cornermap.jpg}
   \caption{Making Edge map and Corner map from training set.}
   \label{fig:making_edge_corner_map}
 \end{figure}
@@ -121,7 +119,7 @@ passed to SURF~\cite{bay2008surf} checking stage. We choose SURF because it
 is invariant with scale, illumination, and similar but faster than SIFT.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=3.25in]{images/surf.jpg}
+  \includegraphics[width=3.in]{images/surf.jpg}
   \caption{Making vocabulary for matching SURF feature.}
   \label{fig:making_surf}
 \end{figure}
@@ -150,18 +148,18 @@ Follow is an example of horse color map
 from all HSV images. Inside the yellow
 boundary is horse-color region, other
 while outside is non-horse color region.
-Color matching is calculated by
+Color matching is calculated by $M_{color} = \sum_{x,y} CM(x,y) * H(x,y)$,
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.90in]{images/colormap.jpg}
-  \caption{Horse color map.}
+  \includegraphics[width=0.80in]{images/colormap.jpg}
+  \caption{The color map of horse object.}
   \label{fig:horse_color}
 \end{figure}
-\begin{equation}
-   M_{color} = \sum_{x,y} CM(x,y) * H(x,y)
-   \label{eq:color}
-\end{equation}
-which $CM$ is color map and $H$ is histogram of image in $HSV$ space.
+%\begin{equation}
+%   M_{color} = \sum_{x,y} CM(x,y) * H(x,y)
+%   \label{eq:color}
+%\end{equation}
+where $CM$ is color map and $H$ is histogram of image in $HSV$ space.
 After extract feature, in order to determine feature is used for
 detecting a specific object or not, we should know if that feature
 satisfies object. Value of feature $f$ in an image $i$ is written as $val(f,i)$.

@@ -94,20 +94,20 @@
 
 % define things.
 
-\setlength{\textheight}{9.250in}
-\setlength{\textwidth}{7.000in}
+\setlength{\textheight}{9.3550in}%{9.250in}
+\setlength{\textwidth}{7.170in}%{7.000in}
 \setlength{\topmargin}{-0.700in}
 \setlength{\oddsidemargin}{-0.250in}
 \setlength{\evensidemargin}{-0.250in}
-\setlength{\columnsep}{2pc}
-\setlength{\headheight}{0.200in}
-\setlength{\headsep}{0.250in}
-\setlength{\footskip}{0.500in}
+\setlength{\columnsep}{1.95pc}%{2pc}
+\setlength{\headheight}{0.180in}%{0.200in}
+\setlength{\headsep}{0.240in}%{0.250in}
+\setlength{\footskip}{0.450in}%{0.500in}
 
 % create a new length ``\ACMcopyrightspace'' and set its initial value.
 
 \newlength{\ACMcopyrightspace}
-\setlength{\ACMcopyrightspace}{3.3in}
+\setlength{\ACMcopyrightspace}{3.15in%}{3.3in}%{3.3in}
 
 % set the value of ``\ACMcopyrightspace'' based on the kind of document.
 

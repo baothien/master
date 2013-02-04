@@ -4,12 +4,11 @@ In this section we first evaluate the performance of the object
 detecting by combination multi-features
 %, and show how they can be used to predict class for new images 
 (section 5.1). The comparision of our method with other detecting methods base on the state-of-art
-result of PASCAL 2009 is also presented. Finally, the evaluation of automatically
-choosing feature for detecting new object is presented in section 5.2.
+result of PASCAL 2009 is also presented. In the section 5.2, the evaluation of automatically
+choosing feature for detecting new object is presented. 
 %We work on seven features: edge, corner, line, circle, HoG, SURF, and color. 
 \subsection{Detection result}
-We create the edge image-$I_E$ and corner
-image-$I_C$ for an input image. We use Canny edge detector with 3x3-structure, and Harris corner detector with 5x5 structure. Beside, Gaussian filter is applied on input image before detecting edge and corner to subtract background.
+The Canny edge detector with 3x3-structure, and Harris corner detector with 5x5 structure are used to create the edge image-$I_E$ and corner image-$I_C$ for an input image. Beside, the Gaussian filter is applied on input image before detecting edge and corner to subtract background.
 
 \textit{Edge map satisfaction:} Let denote $n_{1}^{e}$ as the number of edges in the edge image $I_E$; and $n_{2}^{e}$ as the number of edges matchings between $I_E$ and $M_E$.
 The degree of satisfying $M_E$ of $I_E$ is determined by some conditions as
@@ -25,8 +24,7 @@ bellow:
     \begin{array}{rcl}
     1 &  \frac{n_2^e}{n_1^e} > \theta^e \\
     0 & else
-    \end{array}\right. \\
-   
+    \end{array}\right. \\  
    C_3^E(I_E) = \left\{ 
    \begin{array}{rcl}
    1 & n_1^e < N_2^e \\
@@ -104,7 +102,7 @@ After that, we specify some sub regions where the
 orientation such as horizontal, vertical and diagonal is very strong.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=3.15in]{images/hog.jpg}
+  \includegraphics[width=2.5in]{images/hog.jpg}
   \caption{Sub regions with strong orientation of front/rear view car, from left to
 right: edge image, horizontal, diagonal and vertical.}
   \label{fig:hog}
@@ -148,6 +146,12 @@ negative images and 1500 positive images (including 1000 images
 for training, and 500 images for testing).
 %The database contains natural images that are taken from several sources and include occlusion and cluttered backgrounds. 
 %With side view car, images used for training have the same size 40x100 as in original database. Otherwhile, all images in the training set of front/rear view car, we resize manually into $60\times80$ to eliminate the influence from background. Similar to other object, 
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=2.6in,height=1.1in]{images/car_example.jpg}
+  \caption{The true positive detection with front/rear view car.}
+  \label{fig:car_example}
+\end{figure}
 In the training stage, we choose the basic size for every object. But in the detecting
 phase, with an input image, we preprocess it by resizing it into four
 times as size of the training image. After detecting at this scale, we reduce it size and continue detect
@@ -155,41 +159,33 @@ until the size equals to the training image. By doing that, it is able to
 detect all objects in the input image even if the size of object in it is
 smaller or larger than the basic size, although it consumes more time
 than detecting at a specific scale.
+%\begin{table}[htbp]
 %\small
-%\begin{tabular}{p{3.5cm}p{8cm}p{5cm}}
-\begin{table}[htbp]
-\small
-\begin{tabular}{c}%p{3.5cm}p{8cm}p{5cm}}
-   \begin{tabular}{|c|c|c|c|c|c|} \hline
-	Set & No. image & Correct & In-correct & False rate & Accuracy \\ \hline
-	Calt 101 & 504 & 481 & 23 & 4.57\% & 95.43\% \\ \hline
-	Calt 256 & 526 & 475 & 41 & 8.95\% & 92.05\% \\ \hline
-	Non- car & 665 & 624 & 41 & 6.17\% & 93.83\% \\ \hline
-	\end{tabular} \\ %\hline
-	Detection result of front/rear view car \\ %\hline
-	\begin{tabular}{|c|c|c|c|c|c|} \hline	
-	Set & No. image & Correct & In-correct & False rate & Accuracy \\ \hline
-	UIUC1 & 300 & 275 & 25 & 8.33\% & 91.67\% \\ \hline
-	UIUC2 & 278 & 264 & 14 & 5.04\% & 94.96\%  \\ \hline
-	Non- car & 665 & 638 & 27 & 4.06\% & 95.94\% \\ \hline
-	\end{tabular} \\ %\hline 
-	Detection result of side view car \\ %\hline
-\end{tabular}
-\caption{The result of our car detecting system.}
-\label{table:car_detecting_result}
-\end{table}
-The final result of our system for car detection is shown in table~\ref{table:car_detecting_result}. The performance of Zhenfeng Zhu~\cite{zhu2004car} (with the same database: Caltech and UIUC) reaches the highest accurate rate at $90.5\%$, while
-the lowest accurate of our sytem is about $91.67\%$. This shows that our schema get a better perfomance. Some examples of correct/incorrect detection are shown in Fig~\ref{fig:bicyle_plane_example}. 
+%\begin{tabular}{c}%p{3.5cm}p{8cm}p{5cm}}
+%   \begin{tabular}{|c|c|c|c|c|c|} \hline
+%	Set & No. image & Correct & In-correct & False rate & Accuracy \\ \hline
+%	Calt 101 & 504 & 481 & 23 & 4.57\% & 95.43\% \\ \hline
+%	Calt 256 & 526 & 475 & 41 & 8.95\% & 92.05\% \\ \hline
+%	Non- car & 665 & 624 & 41 & 6.17\% & 93.83\% \\ \hline
+%	\end{tabular} \\ %\hline
+%	Detection result of front/rear view car \\ %\hline
+%	\begin{tabular}{|c|c|c|c|c|c|} \hline	
+%	Set & No. image & Correct & In-correct & False rate & Accuracy \\ \hline
+%	UIUC1 & 300 & 275 & 25 & 8.33\% & 91.67\% \\ \hline
+%	UIUC2 & 278 & 264 & 14 & 5.04\% & 94.96\%  \\ \hline
+%	Non- car & 665 & 638 & 27 & 4.06\% & 95.94\% \\ \hline
+%	\end{tabular} \\ %\hline 
+%	Detection result of side view car \\ %\hline
+%\end{tabular}
+%\caption{The result of our car detecting system.}
+%\label{table:car_detecting_result}
+%\end{table}
+%The final result of our system for car detection is shown in table~\ref{table:car_detecting_result}. The performance of Zhenfeng Zhu~\cite{zhu2004car} (with the same database: Caltech and UIUC) reaches the highest accurate rate at $90.5\%$, while the lowest accurate of our sytem is about $91.67\%$. This shows that our schema get a better perfomance.
+Some examples of correct/incorrect detection are shown in Fig~\ref{fig:bicyle_plane_example}. 
 %The last image in Fig. 9 presents the positive false of bicycle, while in Fig. 10 it is the negative false of areo plane.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=3.15in]{images/car_example.jpg}
-  \caption{The true positive detection with front/rear view car.}
-  \label{fig:car_example}
-\end{figure}
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=3.15in]{images/bicycle_plane_example.jpg}
+  \includegraphics[width=2.3in,height=1.3in]{images/bicycle_plane_example.jpg}
   \caption{Bicyle (top) and areoplane (bottom) detection result.}
   \label{fig:bicyle_plane_example}
 \end{figure}
@@ -223,6 +219,7 @@ regconize object. The final average precision (AP), average recall
 %\label{table:car_detecting_result}
 %\end{table}
 \begin{table}[htbp]
+\centering
 \small
 \begin{tabular}{|c||c|c||c|c|}%p{3.5cm}p{8cm}p{5cm}} 
     \hline 
@@ -264,6 +261,7 @@ feature, because these features are not visual, it is difficult to determine the
 edge, corner, HoG, cirle, line, SURF and color. Bias $\omega_p$ and $\omega_n$ are set to $0.6$ and $0.4$ respectively.
 \begin{table}[htbp]
 \small
+\centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|}%p{3.5cm}p{8cm}p{5cm}} 
     \hline
     Object & Edge & Corner & Line & Circle & HoG & SURF & Color \\ \hline
@@ -296,7 +294,7 @@ That is the reason why with this database, color is helpful for
 detecting motorbike object.
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=3.35in,height=1.2in]{images/auto_selection.pdf}
+  \includegraphics[width=3.3in,height=1.3in]{images/auto_selection.pdf}
   \caption{Satisfied, positive and negative score of horse object(left) and side view car(right) .}
   \label{fig:auto_selection}
 \end{figure}
