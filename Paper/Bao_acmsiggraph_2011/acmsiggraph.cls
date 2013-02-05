@@ -94,8 +94,8 @@
 
 % define things.
 
-\setlength{\textheight}{9.3550in}%{9.250in}
-\setlength{\textwidth}{7.170in}%{7.000in}
+\setlength{\textheight}{9.349in}%50in}%{9.250in}
+\setlength{\textwidth}{7.04in}%{7.000in}
 \setlength{\topmargin}{-0.700in}
 \setlength{\oddsidemargin}{-0.250in}
 \setlength{\evensidemargin}{-0.250in}
